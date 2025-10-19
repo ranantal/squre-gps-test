@@ -97,7 +97,7 @@
     <p class="text">
       Пример:
     </p>
-    <img alt="Example" class="example-image" src="/example.jpeg" />
+    <img alt="Example" class="example-image" src="/example.jpeg">
   </section>
 </template>
 
