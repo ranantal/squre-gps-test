@@ -9,6 +9,7 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AppHeader: typeof import('./components/AppHeader.vue')['default']
+    ErrorModal: typeof import('./components/map/ErrorModal.vue')['default']
     LeafletMap: typeof import('./components/map/LeafletMap.vue')['default']
     MapPage: typeof import('./components/map/MapPage.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
