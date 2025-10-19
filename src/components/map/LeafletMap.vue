@@ -11,6 +11,7 @@
   import 'leaflet/dist/leaflet.css'
   // eslint-disable-next-line
   import * as L from 'leaflet'
+  import { COORDINATE_PRECISION } from '@/constants/format.constants'
   import { DEFAULT_MAP_PARAMS } from '@/constants/leaflet.constants'
 
   interface MapClickEvent {
@@ -39,8 +40,8 @@
         const popupContent = `
           <div style="font-family: Arial, sans-serif;">
             <div style="margin-bottom: 4px;"><strong>ID:</strong> ${marker.id}</div>
-            <div style="margin-bottom: 4px;"><strong>LAT:</strong> ${marker.lat.toFixed(6)}</div>
-            <div><strong>LNG:</strong> ${marker.lng.toFixed(6)}</div>
+            <div style="margin-bottom: 4px;"><strong>LAT:</strong> ${marker.lat.toFixed(COORDINATE_PRECISION)}</div>
+            <div><strong>LNG:</strong> ${marker.lng.toFixed(COORDINATE_PRECISION)}</div>
           </div>
         `
         const leafletMarker = L.marker([marker.lat, marker.lng])

@@ -5,4 +5,4 @@ export const DEFAULT_MAP_PARAMS = {
   zoom: 12,
   maxZoom: 19,
   centeredZoom: 15,
-}
+} as const

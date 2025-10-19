@@ -1,11 +1,11 @@
 import type { Marker } from '@/interfaces/marker.interface'
+import { API_CONFIG } from '@/constants/api.constants'
 import { BackendService } from './backend.utils'
 
 export class ApiService {
-  private static apiKey = '68f502327e411743351937nav1265ee'
-
   public static getAddress (lat: number, lng: number): Promise<any> {
-    return fetch(`https://geocode.maps.co/reverse?lat=${lat}&lon=${lng}&api_key=${this.apiKey}`).then(response => response.json())
+    const url = `${API_CONFIG.GEOCODING.BASE_URL}${API_CONFIG.GEOCODING.ENDPOINTS.REVERSE}?lat=${lat}&lon=${lng}&api_key=${API_CONFIG.GEOCODING.API_KEY}`
+    return fetch(url).then(response => response.json())
   }
 
   public static getMarkers (): Promise<Marker[]> {

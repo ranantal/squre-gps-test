@@ -16,7 +16,7 @@
             {{ $t('map.marker') }} {{ marker.id }}
           </v-list-item-title>
           <v-list-item-subtitle>
-            {{ marker.lat.toFixed(6) }}, {{ marker.lng.toFixed(6) }}
+            {{ marker.lat.toFixed(COORDINATE_PRECISION) }}, {{ marker.lng.toFixed(COORDINATE_PRECISION) }}
           </v-list-item-subtitle>
 
           <template #append>
@@ -46,9 +46,11 @@
 
 <script setup lang="ts">
   import type { Marker } from '@/interfaces/marker.interface'
-  
+
   import { computed } from 'vue'
   import { useRoute, useRouter } from 'vue-router'
+
+  import { COORDINATE_PRECISION } from '@/constants/format.constants'
   import { useAppStore } from '@/stores/app'
 
   const route = useRoute()

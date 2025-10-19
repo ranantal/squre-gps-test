@@ -1,30 +1,31 @@
 import type { Marker } from '@/interfaces/marker.interface'
+import { STORAGE_DEFAULTS, STORAGE_KEYS } from '@/constants/storage.constants'
 
 export class BackendService {
   public static getMarkers (): Promise<Marker[]> {
-    const markers = localStorage.getItem('markers') || '[]'
+    const markers = localStorage.getItem(STORAGE_KEYS.MARKERS) || STORAGE_DEFAULTS.MARKERS
 
     return Promise.resolve(JSON.parse(markers))
   }
 
   public static saveMarker (lat: number, lng: number): Promise<Marker> {
-    const markers = localStorage.getItem('markers') || '[]'
+    const markers = localStorage.getItem(STORAGE_KEYS.MARKERS) || STORAGE_DEFAULTS.MARKERS
     const id = this.randomid()
     const marker = { id, lat, lng }
     const updatedMarkers = JSON.parse(markers)
 
     updatedMarkers.push(marker)
 
-    localStorage.setItem('markers', JSON.stringify(updatedMarkers))
+    localStorage.setItem(STORAGE_KEYS.MARKERS, JSON.stringify(updatedMarkers))
 
     return Promise.resolve(marker)
   }
 
   public static deleteMarker (markerId: string): Promise<void> {
-    const markers = localStorage.getItem('markers') || '[]'
+    const markers = localStorage.getItem(STORAGE_KEYS.MARKERS) || STORAGE_DEFAULTS.MARKERS
     const updatedMarkers = JSON.parse(markers).filter((marker: Marker) => marker.id !== markerId)
 
-    localStorage.setItem('markers', JSON.stringify(updatedMarkers))
+    localStorage.setItem(STORAGE_KEYS.MARKERS, JSON.stringify(updatedMarkers))
 
     return Promise.resolve()
   }
