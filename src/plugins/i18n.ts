@@ -19,9 +19,15 @@ const messages = {
         english: 'English',
       },
     },
-    'main': {
-      markers: 'Markers',
-      marker: 'Marker',
+    'map': {
+      'markers': 'Markers',
+      'marker': 'Marker',
+      'no-markers': 'No markers found',
+      'error': {
+        'title': 'Error',
+        'message': 'An error occurred while retrieving the address',
+        'close-button': 'OK',
+      },
     },
   },
   ru: {
@@ -36,9 +42,15 @@ const messages = {
         english: 'English',
       },
     },
-    'main': {
-      markers: 'Маркеры',
-      marker: 'Маркер',
+    'map': {
+      'markers': 'Маркеры',
+      'marker': 'Маркер',
+      'no-markers': 'Маркеры не найдены',
+      'error': {
+        'title': 'Ошибка',
+        'message': 'Произошла ошибка при получении адреса',
+        'close-button': 'ОК',
+      },
     },
   },
 }
