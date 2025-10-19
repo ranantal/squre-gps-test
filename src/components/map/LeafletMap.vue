@@ -1,8 +1,6 @@
 <template>
-  <div :class="{ 'map-wrapper': true, 'edit-mode': appStore.editMode }">
-    <div
-      id="map"
-    />
+  <div :class="{ 'map-wrapper': true, 'edit-mode': appStore.editMode, 'is-saving': appStore.isSaving }">
+    <div id="map" />
   </div>
 </template>
 
@@ -53,9 +51,12 @@
   cursor: crosshair;
 }
 
+.map-wrapper.is-saving #map {
+  cursor: progress;
+}
+
 #map {
   overflow: hidden;
   height: 100%;
 }
-
 </style>
