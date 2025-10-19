@@ -74,4 +74,17 @@
   .scrollable-list::-webkit-scrollbar-thumb:hover {
     background: rgba(0, 0, 0, 0.3);
   }
+
+  .scrollable-list :deep(.v-list-item) {
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+
+  .scrollable-list :deep(.v-list-item:hover) {
+    background-color: rgba(0, 0, 0, 0.08);
+  }
+
+  .scrollable-list :deep(.v-list-item:active) {
+    background-color: rgba(0, 0, 0, 0.12);
+  }
 </style>
