@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts" setup>
-  import { onMounted, ref, watch } from 'vue'
+  import { onMounted, watch } from 'vue'
   import { useRouter } from 'vue-router'
   import { useAppStore } from '@/stores/app'
   import 'leaflet/dist/leaflet.css'
@@ -23,9 +23,9 @@
 
   const router = useRouter()
   const appStore = useAppStore()
-  const initialMap: Ref<L.Map | null> = ref(null)
-  const markersLayer: Ref<L.LayerGroup | null> = ref(null)
-  const leafletMarkers: Ref<Map<string, L.Marker>> = ref(new Map())
+  const initialMap: Ref<L.Map | null> = shallowRef(null)
+  const markersLayer: Ref<L.LayerGroup | null> = shallowRef(null)
+  const leafletMarkers: Ref<Map<string, L.Marker>> = shallowRef(new Map())
 
   function addMarkersToMap () {
     if (!initialMap.value || !markersLayer.value) return
