@@ -10,12 +10,15 @@ import { DEFAULT_MAP_PARAMS } from '@/constants/leaflet.constants'
 export interface UseMapMarkersReturn {
   updateMarkers: (markers: Marker[]) => void
   focusMarker: (markerId: string) => void
+  addMarker: (marker: Marker) => void
+  removeMarker: (markerId: string) => void
 }
 
 export function useMapMarkers (map: Ref<L.Map | null>): UseMapMarkersReturn {
   const router = useRouter()
   const markersLayer = shallowRef<L.LayerGroup | null>(null)
   const leafletMarkers = shallowRef(new Map<string, L.Marker>())
+  const currentMarkerIds = shallowRef(new Set<string>())
 
   const initializeMarkersLayer = () => {
     if (!map.value || markersLayer.value) {
@@ -34,23 +37,48 @@ export function useMapMarkers (map: Ref<L.Map | null>): UseMapMarkersReturn {
     `
   }
 
+  const addMarker = (marker: Marker) => {
+    if (!markersLayer.value) {
+      return
+    }
+
+    const leafletMarker = L.marker([marker.lat, marker.lng])
+      .bindPopup(createPopupContent(marker))
+      .on('click', () => {
+        router.push(`/map/${marker.id}`)
+      })
+
+    markersLayer.value.addLayer(leafletMarker)
+    leafletMarkers.value.set(marker.id, leafletMarker)
+    currentMarkerIds.value.add(marker.id)
+  }
+
+  const removeMarker = (markerId: string) => {
+    const existingMarker = leafletMarkers.value.get(markerId)
+    if (existingMarker && markersLayer.value) {
+      markersLayer.value.removeLayer(existingMarker)
+      leafletMarkers.value.delete(markerId)
+      currentMarkerIds.value.delete(markerId)
+    }
+  }
+
   const updateMarkers = (markers: Marker[]) => {
     if (!markersLayer.value) {
       return
     }
 
-    markersLayer.value.clearLayers()
-    leafletMarkers.value.clear()
+    const newMarkerIds = new Set(markers.map(m => m.id))
+
+    for (const markerId of currentMarkerIds.value) {
+      if (!newMarkerIds.has(markerId)) {
+        removeMarker(markerId)
+      }
+    }
 
     for (const marker of markers) {
-      const leafletMarker = L.marker([marker.lat, marker.lng])
-        .bindPopup(createPopupContent(marker))
-        .on('click', () => {
-          router.push(`/map/${marker.id}`)
-        })
-
-      markersLayer.value.addLayer(leafletMarker)
-      leafletMarkers.value.set(marker.id, leafletMarker)
+      if (!currentMarkerIds.value.has(marker.id)) {
+        addMarker(marker)
+      }
     }
   }
 
@@ -79,10 +107,13 @@ export function useMapMarkers (map: Ref<L.Map | null>): UseMapMarkersReturn {
       markersLayer.value = null
     }
     leafletMarkers.value.clear()
+    currentMarkerIds.value.clear()
   })
 
   return {
     updateMarkers,
     focusMarker,
+    addMarker,
+    removeMarker,
   }
 }
