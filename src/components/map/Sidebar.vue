@@ -1,6 +1,8 @@
 <template>
   <aside class="sidebar">
-    <div class="text-h5">{{ $t('map.markers') }}:</div>
+    <v-list-subheader class="text-h6 font-weight-bold">
+      {{ $t('map.markers') }}:
+    </v-list-subheader>
 
     <v-list v-if="appStore.markers.length > 0">
       <v-list-item
