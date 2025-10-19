@@ -30,7 +30,7 @@
   }
 
   function handleMapClick (event: { lat: number, lng: number }) {
-    if (!appStore.editMode) return
+    if (!appStore.editMode || appStore.isSaving) return
 
     appStore.saveMarker(event.lat, event.lng)
   }
