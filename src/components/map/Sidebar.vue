@@ -18,6 +18,17 @@
           <v-list-item-subtitle>
             {{ marker.lat.toFixed(6) }}, {{ marker.lng.toFixed(6) }}
           </v-list-item-subtitle>
+
+          <template #append>
+            <v-btn
+              class="delete-btn"
+              color="error"
+              icon="mdi-delete"
+              size="small"
+              variant="text"
+              @click.stop="handleDeleteMarker(marker)"
+            />
+          </template>
         </v-list-item>
       </v-list>
 
@@ -49,6 +60,10 @@
   function handleMarkerClick (marker: Marker) {
     appStore.setCenterMarker(marker)
     router.push(`/map/${marker.id}`)
+  }
+
+  function handleDeleteMarker (marker: Marker) {
+    appStore.deleteMarker(marker.id)
   }
 </script>
 
@@ -110,5 +125,14 @@
 
   .scrollable-list :deep(.v-list-item.selected-marker:hover) {
     background-color: rgba(25, 118, 210, 0.16);
+  }
+
+  .scrollable-list :deep(.delete-btn) {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .scrollable-list :deep(.v-list-item:hover .delete-btn) {
+    opacity: 1;
   }
 </style>

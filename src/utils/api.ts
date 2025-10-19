@@ -15,4 +15,8 @@ export class ApiService {
   public static saveMarker (lat: number, lng: number): Promise<Marker> {
     return BackendService.saveMarker(lat, lng)
   }
+
+  public static deleteMarker (markerId: string): Promise<void> {
+    return BackendService.deleteMarker(markerId)
+  }
 }

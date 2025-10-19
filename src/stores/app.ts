@@ -41,5 +41,15 @@ export const useAppStore = defineStore('app', {
     setCenterMarker (marker: Marker | null) {
       this.centerMarker = marker
     },
+
+    async deleteMarker (markerId: string) {
+      try {
+        await ApiService.deleteMarker(markerId)
+        this.markers = this.markers.filter(marker => marker.id !== markerId)
+      } catch (error) {
+        console.error('Failed to delete marker:', error)
+        throw error
+      }
+    },
   },
 })

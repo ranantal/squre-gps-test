@@ -20,6 +20,15 @@ export class BackendService {
     return Promise.resolve(marker)
   }
 
+  public static deleteMarker (markerId: string): Promise<void> {
+    const markers = localStorage.getItem('markers') || '[]'
+    const updatedMarkers = JSON.parse(markers).filter((marker: Marker) => marker.id !== markerId)
+
+    localStorage.setItem('markers', JSON.stringify(updatedMarkers))
+
+    return Promise.resolve()
+  }
+
   private static randomid (): string {
     const bytes = new Uint8Array(16)
 
