@@ -1,6 +1,6 @@
-import type { Marker } from '@/interfaces/marker.interface'
+import type { Marker } from '@/types'
 import { API_CONFIG } from '@/constants/api.constants'
-import { BackendService } from './backend.utils'
+import { BackendService } from './backend.service'
 
 export class ApiService {
   public static getAddress (lat: number, lng: number): Promise<any> {

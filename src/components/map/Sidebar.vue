@@ -45,7 +45,7 @@
 </template>
 
 <script setup lang="ts">
-  import type { Marker } from '@/interfaces/marker.interface'
+  import type { Marker } from '@/types'
 
   import { computed } from 'vue'
   import { useRoute, useRouter } from 'vue-router'

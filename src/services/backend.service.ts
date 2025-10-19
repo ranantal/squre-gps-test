@@ -1,4 +1,4 @@
-import type { Marker } from '@/interfaces/marker.interface'
+import type { Marker } from '@/types'
 import { STORAGE_DEFAULTS, STORAGE_KEYS } from '@/constants/storage.constants'
 
 export class BackendService {

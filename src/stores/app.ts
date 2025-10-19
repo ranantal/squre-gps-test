@@ -1,6 +1,6 @@
-import type { Marker } from '@/interfaces/marker.interface'
+import type { Marker } from '@/types'
 import { defineStore } from 'pinia'
-import { ApiService } from '@/utils/api.utils'
+import { ApiService } from '@/services'
 
 export const useAppStore = defineStore('app', {
   state: () => ({
