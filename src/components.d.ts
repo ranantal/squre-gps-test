@@ -12,5 +12,6 @@ declare module 'vue' {
     LeafletMap: typeof import('./components/LeafletMap.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    Sidebar: typeof import('./components/Sidebar.vue')['default']
   }
 }

@@ -8,25 +8,37 @@ import { createI18n } from 'vue-i18n'
 
 const messages = {
   en: {
-    header: {
-      title: 'Test task for SqureGPS',
-      about: 'About Task',
-      map: 'Map',
+    'default-layout': {
+      header: {
+        title: 'Test task for SqureGPS',
+        about: 'About Task',
+        map: 'Map',
+      },
+      languages: {
+        russian: 'Русский',
+        english: 'English',
+      },
     },
-    languages: {
-      russian: 'Русский',
-      english: 'English',
+    'main': {
+      markers: 'Markers',
+      marker: 'Marker',
     },
   },
   ru: {
-    header: {
-      title: 'Тестовое задание для SqureGPS',
-      about: 'О Задании',
-      map: 'Карта',
+    'default-layout': {
+      header: {
+        title: 'Тестовое задание для SqureGPS',
+        about: 'О Задании',
+        map: 'Карта',
+      },
+      languages: {
+        russian: 'Русский',
+        english: 'English',
+      },
     },
-    languages: {
-      russian: 'Русский',
-      english: 'English',
+    'main': {
+      markers: 'Маркеры',
+      marker: 'Маркер',
     },
   },
 }

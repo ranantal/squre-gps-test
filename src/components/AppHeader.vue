@@ -9,7 +9,7 @@
       size="large"
       variant="text"
     >
-      {{ $t('header.title') }}
+      {{ $t('default-layout.header.title') }}
     </v-app-bar-title>
 
     <v-spacer />
@@ -30,10 +30,10 @@
       </template>
       <v-list>
         <v-list-item @click="changeLocale('ru')">
-          <v-list-item-title>{{ $t('languages.russian') }}</v-list-item-title>
+          <v-list-item-title>{{ $t('default-layout.languages.russian') }}</v-list-item-title>
         </v-list-item>
         <v-list-item @click="changeLocale('en')">
-          <v-list-item-title>{{ $t('languages.english') }}</v-list-item-title>
+          <v-list-item-title>{{ $t('default-layout.languages.english') }}</v-list-item-title>
         </v-list-item>
       </v-list>
     </v-menu>
@@ -43,8 +43,8 @@
         color="white"
         slider-color="white"
       >
-        <v-tab to="/about">{{ $t('header.about') }}</v-tab>
-        <v-tab to="/">{{ $t('header.map') }}</v-tab>
+        <v-tab to="/">{{ $t('default-layout.header.about') }}</v-tab>
+        <v-tab to="/map">{{ $t('default-layout.header.map') }}</v-tab>
       </v-tabs>
     </template>
   </v-app-bar>

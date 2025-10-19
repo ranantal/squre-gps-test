@@ -8,7 +8,7 @@
   // eslint-disable-next-line
   import * as L from 'leaflet'
 
-  const initialMap = ref(null)
+  const initialMap: Ref<L.Map | null> = ref(null)
 
   onMounted(() => {
     initialMap.value = L.map('map').setView([44.804, 20.4651], 12)
@@ -21,6 +21,6 @@
 
 <style scoped>
 #map {
-  height: 100%;
+  flex-basis:100%;
 }
 </style>
