@@ -12,16 +12,11 @@
   // eslint-disable-next-line
   import * as L from 'leaflet'
 
-  interface Props {
-    id?: string
-  }
-
   interface MapClickEvent {
     lat: number
     lng: number
   }
 
-  const props = defineProps<Props>()
   const emit = defineEmits<{
     'map-click': [event: MapClickEvent]
   }>()

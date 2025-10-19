@@ -1,7 +1,7 @@
 <template>
   <main class="main">
     <Sidebar />
-    <LeafletMap :id="id" @map-click="handleMapClick" />
+    <LeafletMap @map-click="handleMapClick" />
 
     <v-btn
       class="add-button"
@@ -16,12 +16,6 @@
 
 <script lang="ts" setup>
   import { useAppStore } from '@/stores/app'
-
-  interface Props {
-    id?: string
-  }
-
-  defineProps<Props>()
 
   const appStore = useAppStore()
 

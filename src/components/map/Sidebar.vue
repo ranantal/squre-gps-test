@@ -9,6 +9,7 @@
         <v-list-item
           v-for="marker in appStore.markers"
           :key="marker.id"
+          :class="{ 'selected-marker': selectedMarkerId === marker.id.toString() }"
         >
           <v-list-item-title>
             {{ $t('map.marker') }} {{ marker.id }}
@@ -32,9 +33,14 @@
 </template>
 
 <script setup lang="ts">
+  import { computed } from 'vue'
+  import { useRoute } from 'vue-router'
   import { useAppStore } from '@/stores/app'
 
+  const route = useRoute()
   const appStore = useAppStore()
+
+  const selectedMarkerId = computed(() => (route.params as { id?: string }).id)
 </script>
 
 <style scoped>
@@ -86,5 +92,14 @@
 
   .scrollable-list :deep(.v-list-item:active) {
     background-color: rgba(0, 0, 0, 0.12);
+  }
+
+  .scrollable-list :deep(.v-list-item.selected-marker) {
+    background-color: rgba(25, 118, 210, 0.12);
+    border-left: 4px solid #1976d2;
+  }
+
+  .scrollable-list :deep(.v-list-item.selected-marker:hover) {
+    background-color: rgba(25, 118, 210, 0.16);
   }
 </style>

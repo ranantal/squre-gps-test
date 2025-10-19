@@ -1,5 +1,5 @@
 <template>
-  <MapPage :id="id" />
+  <MapPage />
 
   <v-dialog
     v-model="showError"
@@ -31,13 +31,10 @@
 
 <script lang="ts" setup>
   import { onMounted, ref } from 'vue'
-  import { useRoute } from 'vue-router'
   import { useAppStore } from '@/stores/app'
 
-  const route = useRoute()
   const appStore = useAppStore()
 
-  const id = (route.params as { id?: string }).id
   const showError = ref(false)
 
   function handleErrorClose () {
