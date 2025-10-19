@@ -8,6 +8,12 @@
   // eslint-disable-next-line
   import * as L from 'leaflet'
 
+  interface Props {
+    id?: string
+  }
+
+  const props = defineProps<Props>()
+
   const initialMap: Ref<L.Map | null> = ref(null)
 
   onMounted(() => {
@@ -16,7 +22,6 @@
       maxZoom: 19,
     }).addTo(initialMap.value)
   })
-
 </script>
 
 <style scoped>

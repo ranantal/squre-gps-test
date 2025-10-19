@@ -1,7 +1,7 @@
 <template>
   <main class="main">
     <Sidebar />
-    <LeafletMap />
+    <LeafletMap :id="id" />
   </main>
 </template>
 
@@ -13,10 +13,6 @@
   }
 
   const props = defineProps<Props>()
-
-  onMounted(() => {
-    console.log('Map ID:', props.id)
-  })
 </script>
 
 <style scoped>
