@@ -34,7 +34,7 @@
 
       <v-alert
         v-else
-        class="mt-4"
+        class="mt-4 no-markers-alert"
         type="info"
         variant="tonal"
       >
@@ -86,6 +86,11 @@
     flex: 1;
     overflow-y: auto;
     max-height: calc(100vh - 184px);
+  }
+
+  .no-markers-alert {
+    flex: none;
+    align-self: flex-start;
   }
 
   .scrollable-list::-webkit-scrollbar {
