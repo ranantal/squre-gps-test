@@ -8,6 +8,7 @@ export const useAppStore = defineStore('app', {
     isLoading: false,
     isSaving: false,
     editMode: false,
+    centerMarker: null as Marker | null,
   }),
 
   actions: {
@@ -35,6 +36,10 @@ export const useAppStore = defineStore('app', {
         this.isSaving = false
         this.editMode = false
       }
+    },
+
+    setCenterMarker (marker: Marker | null) {
+      this.centerMarker = marker
     },
   },
 })

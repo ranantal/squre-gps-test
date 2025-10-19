@@ -10,6 +10,7 @@
           v-for="marker in appStore.markers"
           :key="marker.id"
           :class="{ 'selected-marker': selectedMarkerId === marker.id.toString() }"
+          @click="handleMarkerClick(marker)"
         >
           <v-list-item-title>
             {{ $t('map.marker') }} {{ marker.id }}
@@ -33,14 +34,22 @@
 </template>
 
 <script setup lang="ts">
+  import type { Marker } from '@/interfaces/marker.interface'
+  
   import { computed } from 'vue'
-  import { useRoute } from 'vue-router'
+  import { useRoute, useRouter } from 'vue-router'
   import { useAppStore } from '@/stores/app'
 
   const route = useRoute()
+  const router = useRouter()
   const appStore = useAppStore()
 
   const selectedMarkerId = computed(() => (route.params as { id?: string }).id)
+
+  function handleMarkerClick (marker: Marker) {
+    appStore.setCenterMarker(marker)
+    router.push(`/map/${marker.id}`)
+  }
 </script>
 
 <style scoped>

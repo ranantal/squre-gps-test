@@ -25,11 +25,13 @@
   const appStore = useAppStore()
   const initialMap: Ref<L.Map | null> = ref(null)
   const markersLayer: Ref<L.LayerGroup | null> = ref(null)
+  const leafletMarkers: Ref<Map<string, L.Marker>> = ref(new Map())
 
   function addMarkersToMap () {
     if (!initialMap.value || !markersLayer.value) return
 
     markersLayer.value.clearLayers()
+    leafletMarkers.value.clear()
 
     for (const marker of appStore.markers) {
       if (markersLayer.value) {
@@ -46,6 +48,7 @@
             router.push(`/map/${marker.id}`)
           })
         markersLayer.value.addLayer(leafletMarker)
+        leafletMarkers.value.set(marker.id, leafletMarker)
       }
     }
   }
@@ -63,6 +66,22 @@
     watch(() => appStore.markers, () => {
       addMarkersToMap()
     }, { deep: true })
+
+    watch(() => appStore.centerMarker, marker => {
+      if (!marker) return
+
+      if (leafletMarkers.value.has(marker.id)) {
+        const leafletMarker = leafletMarkers.value.get(marker.id)
+        if (leafletMarker) {
+          leafletMarker.openPopup()
+        }
+      }
+
+      if (initialMap.value) {
+        initialMap.value.setView([marker.lat, marker.lng], 15)
+        appStore.setCenterMarker(null)
+      }
+    })
 
     initialMap.value.on('click', (e: L.LeafletMouseEvent) => {
       const { lat, lng } = e.latlng
