@@ -11,6 +11,7 @@
   import 'leaflet/dist/leaflet.css'
   // eslint-disable-next-line
   import * as L from 'leaflet'
+  import { DEFAULT_MAP_PARAMS } from '@/constants/leaflet.constants'
 
   interface MapClickEvent {
     lat: number
@@ -54,9 +55,9 @@
   }
 
   onMounted(() => {
-    initialMap.value = L.map('map').setView([44.804, 20.4651], 12)
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
+    initialMap.value = L.map('map').setView([DEFAULT_MAP_PARAMS.lat, DEFAULT_MAP_PARAMS.lng], DEFAULT_MAP_PARAMS.zoom)
+    L.tileLayer(DEFAULT_MAP_PARAMS.tileSrc, {
+      maxZoom: DEFAULT_MAP_PARAMS.maxZoom,
     }).addTo(initialMap.value)
 
     markersLayer.value = L.layerGroup().addTo(initialMap.value)
@@ -78,7 +79,7 @@
       }
 
       if (initialMap.value) {
-        initialMap.value.setView([marker.lat, marker.lng], 15)
+        initialMap.value.setView([marker.lat, marker.lng], DEFAULT_MAP_PARAMS.centeredZoom)
         appStore.setCenterMarker(null)
       }
     })

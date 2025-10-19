@@ -1,5 +1,5 @@
 import type { Marker } from '@/interfaces/marker.interface'
-import { BackendService } from './backend'
+import { BackendService } from './backend.utils'
 
 export class ApiService {
   private static apiKey = '68f502327e411743351937nav1265ee'
