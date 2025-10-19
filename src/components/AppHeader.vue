@@ -40,11 +40,12 @@
 
     <template #extension>
       <v-tabs
+        v-model="activeTab"
         color="white"
         slider-color="white"
       >
-        <v-tab to="/">{{ $t('default-layout.header.about') }}</v-tab>
-        <v-tab to="/map">{{ $t('default-layout.header.map') }}</v-tab>
+        <v-tab to="/" :value="'main'">{{ $t('default-layout.header.about') }}</v-tab>
+        <v-tab to="/map" :value="'map'">{{ $t('default-layout.header.map') }}</v-tab>
       </v-tabs>
     </template>
   </v-app-bar>
@@ -53,11 +54,19 @@
 <script setup lang="ts">
   import { computed } from 'vue'
   import { useI18n } from 'vue-i18n'
+  import { useRoute } from 'vue-router'
 
   const { locale } = useI18n()
+  const route = useRoute()
 
   const currentFlagImage = computed(() => {
     return locale.value === 'ru' ? '/flags/ru.svg' : '/flags/gb.svg'
+  })
+
+  const activeTab = computed(() => {
+    if (route.path === '/') return 'main'
+    if (route.path.startsWith('/map')) return 'map'
+    return null
   })
 
   function changeLocale (newLocale: string) {
