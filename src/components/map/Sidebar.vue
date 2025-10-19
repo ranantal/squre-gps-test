@@ -64,8 +64,15 @@
     router.push(`/map/${marker.id}`)
   }
 
-  function handleDeleteMarker (marker: Marker) {
-    appStore.deleteMarker(marker.id)
+  async function handleDeleteMarker (marker: Marker) {
+    const currentMarkerId = selectedMarkerId.value
+    const isCurrentMarker = currentMarkerId === marker.id
+
+    await appStore.deleteMarker(marker.id)
+
+    if (isCurrentMarker) {
+      router.push('/map')
+    }
   }
 </script>
 
