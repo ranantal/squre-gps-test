@@ -2,12 +2,17 @@
   <v-app-bar
     color="primary"
     elevation="2"
-    extended
+    height="56"
+    class="mobile-header"
   >
+    <v-app-bar-nav-icon
+      color="white"
+      @click="drawer = !drawer"
+    />
+    
     <v-app-bar-title
       color="white"
-      size="large"
-      variant="text"
+      class="mobile-title"
     >
       {{ $t('default-layout.header.title') }}
     </v-app-bar-title>
@@ -20,10 +25,11 @@
           v-bind="props"
           color="white"
           variant="text"
+          size="small"
         >
           <img
             alt="Current language flag"
-            class="flag-icon"
+            class="flag-icon-mobile"
             :src="currentFlagImage"
           >
         </v-btn>
@@ -37,35 +43,63 @@
         </v-list-item>
       </v-list>
     </v-menu>
-
-    <template #extension>
-      <v-tabs
-        v-model="activeTab"
-        color="white"
-        slider-color="white"
-      >
-        <v-tab to="/" :value="'main'">{{ $t('default-layout.header.about') }}</v-tab>
-        <v-tab to="/map" :value="'map'">{{ $t('default-layout.header.map') }}</v-tab>
-      </v-tabs>
-    </template>
   </v-app-bar>
+
+  <v-navigation-drawer
+    v-model="drawer"
+    temporary
+    location="left"
+    width="280"
+  >
+    <v-list>
+      <v-list-item
+        :active="activeTab === 'main'"
+        prepend-icon="mdi-information"
+        :title="$t('default-layout.header.about')"
+        to="/"
+        @click="drawer = false"
+      />
+      
+      <v-list-item
+        :active="activeTab === 'map'"
+        prepend-icon="mdi-map"
+        :title="$t('default-layout.header.map')"
+        to="/map"
+        @click="drawer = false"
+      />
+    </v-list>
+  </v-navigation-drawer>
 </template>
 
 <script setup lang="ts">
-  import { computed } from 'vue'
+  import { computed, ref } from 'vue'
   import { useLocalization } from '@/composables/useLocalization'
   import { useNavigation } from '@/composables/useNavigation'
 
   const { currentLocale, changeLocale, getFlagIcon } = useLocalization()
   const { activeTab } = useNavigation()
 
+  const drawer = ref(false)
   const currentFlagImage = computed(() => getFlagIcon(currentLocale.value))
 </script>
 
 <style scoped>
-.flag-icon {
-  width: 24px;
-  height: 16px;
+.mobile-header {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1005;
+}
+
+.mobile-title {
+  font-size: 18px !important;
+  font-weight: 500;
+}
+
+.flag-icon-mobile {
+  width: 20px;
+  height: 14px;
   border-radius: 2px;
   object-fit: cover;
 }

@@ -12,6 +12,7 @@ declare module 'vue' {
     ErrorModal: typeof import('./components/map/ErrorModal.vue')['default']
     LeafletMap: typeof import('./components/map/LeafletMap.vue')['default']
     MapPage: typeof import('./components/map/MapPage.vue')['default']
+    MobileHeader: typeof import('./components/MobileHeader.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Sidebar: typeof import('./components/map/Sidebar.vue')['default']

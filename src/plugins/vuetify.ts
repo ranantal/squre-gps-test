@@ -20,6 +20,9 @@ import 'vuetify/styles'
 
 // https://vuetifyjs.com/en/introduction/why-vuetify/#feature-guides
 export default createVuetify({
+  display: {
+    mobileBreakpoint: 'sm',
+  },
   locale: {
     adapter: createVueI18nAdapter({ i18n: i18n as any, useI18n }),
   },
