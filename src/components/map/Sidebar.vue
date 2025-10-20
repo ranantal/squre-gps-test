@@ -59,9 +59,15 @@
 
   const selectedMarkerId = computed(() => (route.params as { id?: string }).id)
 
+  const emit = defineEmits<{
+    markerClick: [marker: Marker]
+  }>()
+
   function handleMarkerClick (marker: Marker) {
     appStore.setCenterMarker(marker)
     router.push(`/map/${marker.id}`)
+    
+    emit('markerClick', marker)
   }
 
   async function handleDeleteMarker (marker: Marker) {
@@ -80,8 +86,18 @@
   .sidebar {
     display: flex;
     flex-direction: column;
-    width: 300px;
+    width: 280px;
+    min-width: 280px;
     padding: 16px;
+  }
+  
+  @media (max-width: 600px) {
+    .sidebar {
+      height: 100%;
+      width: 100%;
+      max-width: none;
+      height: auto;
+    }
   }
 
   .markers-container {
@@ -94,7 +110,13 @@
   .scrollable-list {
     flex: 1;
     overflow-y: auto;
-    max-height: calc(100vh - 184px);
+    max-height: calc(100vh - 150px);
+  }
+
+  @media (max-width: 600px) {
+    .scrollable-list {
+      max-height: calc(100vh - 128px);
+    }
   }
 
   .no-markers-alert {
