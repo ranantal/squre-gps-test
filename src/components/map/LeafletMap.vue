@@ -11,7 +11,7 @@
 
   import { useLeafletMap } from '@/composables/useLeafletMap'
   import { useMapMarkers } from '@/composables/useMapMarkers'
-  import { useAppStore } from '@/stores/app'
+  import { useAppStore } from '@/stores'
 
   import 'leaflet/dist/leaflet.css'
 

@@ -51,7 +51,7 @@
   import { useRoute, useRouter } from 'vue-router'
 
   import { COORDINATE_PRECISION } from '@/constants/format.constants'
-  import { useAppStore } from '@/stores/app'
+  import { useAppStore } from '@/stores'
 
   const route = useRoute()
   const router = useRouter()

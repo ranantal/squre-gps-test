@@ -5,6 +5,7 @@
  */
 
 import { createI18n } from 'vue-i18n'
+import { STORAGE_KEYS, STORAGE_DEFAULTS } from '@/constants/storage.constants'
 
 const messages = {
   en: {
@@ -55,8 +56,10 @@ const messages = {
   },
 }
 
+const savedLocale = localStorage.getItem(STORAGE_KEYS.LOCALE) || STORAGE_DEFAULTS.LOCALE
+
 export default createI18n({
-  locale: 'en',
+  locale: savedLocale,
   fallbackLocale: 'en',
   messages,
   legacy: false,

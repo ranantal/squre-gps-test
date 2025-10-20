@@ -53,25 +53,19 @@
 
 <script setup lang="ts">
   import { computed } from 'vue'
-  import { useI18n } from 'vue-i18n'
   import { useRoute } from 'vue-router'
+  import { useLocalization } from '@/composables/useLocalization'
 
-  const { locale } = useI18n()
   const route = useRoute()
+  const { currentLocale, changeLocale, getFlagIcon } = useLocalization()
 
-  const currentFlagImage = computed(() => {
-    return locale.value === 'ru' ? '/flags/ru.svg' : '/flags/gb.svg'
-  })
+  const currentFlagImage = computed(() => getFlagIcon(currentLocale.value))
 
   const activeTab = computed(() => {
     if (route.path === '/') return 'main'
     if (route.path.startsWith('/map')) return 'map'
     return null
   })
-
-  function changeLocale (newLocale: string) {
-    locale.value = newLocale
-  }
 </script>
 
 <style scoped>
