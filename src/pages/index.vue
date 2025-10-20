@@ -142,4 +142,15 @@ ol {
   margin: 0 auto;
   width: 538px;
 }
+
+@media (max-width: 600px) {
+  .about {
+    padding: 16px;
+  }
+  
+  .example-image {
+    width: 100%;
+    max-width: 400px;
+  }
+}
 </style>
